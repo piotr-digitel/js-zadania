@@ -32,11 +32,11 @@ console.log("7 silnia = "+summary);
 
 // 3) sum of the odd items
 let valueArray = [1,6,23,8,4,98,3,7,3,98,4,98];
-let sum = 0;
+let sumodd = 0;
 for (let i = 0; i < valueArray.length; i++) {
-    if(valueArray[i] % 2 == 0) sum = sum + valueArray[i];
+    if(valueArray[i] % 2 == 0) sumodd = sumodd + valueArray[i];
 }
-console.log("Suma liczb parzystych to: " + sum);
+console.log("Suma liczb parzystych to: " + sumodd);
 
 
 // 4) Choose highest and lowest values from the given array. [1,6,23,8,4,98,3,7,3,98,4,98]. One loop run.
