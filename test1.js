@@ -41,11 +41,41 @@ console.log("Suma liczb parzystych to: " + sumodd);
 
 // 4) Choose highest and lowest values from the given array. [1,6,23,8,4,98,3,7,3,98,4,98]. One loop run.
 let valueArray4 = [1,6,23,8,4,98,3,7,3,98,4,98];
-let highval = valueArray[0];
-let lowval = valueArray[0];
+let highval = valueArray4[0];
+let lowval = valueArray4[0];
 for (let i = 1; i < valueArray4.length; i++) {
-    if(valueArray[i] > highval) highval = valueArray[i];
-    if(valueArray[i] < lowval) lowval = valueArray[i];
+    if(valueArray4[i] > highval) highval = valueArray4[i];
+    if(valueArray4[i] < lowval) lowval = valueArray4[i];
 }
 console.log("Największa liczba to: " + highval);
 console.log("Najmniejsza liczba to: " + lowval);
+
+// 5) Choose longest string from the array. [‘Karol’, ‘Adam’,’Rogowski’,’Politechnika’,’Super’,’Weekend’].
+let valueArray5 = ['Karol', 'Adam','Rogowski','Politechnika','Super','Weekend'];
+let longestindex = 0;
+let maxlenght = 0;
+for (let i = 0; i < valueArray5.length; i++) {
+    if(valueArray5[i].length > maxlenght) {
+        longestindex = i;
+        maxlenght = valueArray5[i].length
+    }
+}
+console.log("Najdłuższy napis to: " + valueArray5[longestindex]);
+
+
+
+
+
+
+
+
+
+//7) Calculate average value from the given array for even numbers [1,6,23,8,4,98,3,7,3,98,4,98]
+let valueArray7 = [1,6,23,8,4,98,3,7,3,98,4,98];
+let sum7 = 0;
+let avg7 = 0;
+for (let i = 0; i < valueArray7.length; i++) {
+    sum7 += valueArray7[i];
+}
+avg7 = sum7 / valueArray7.length;
+console.log("Średnia to: " + avg7);
