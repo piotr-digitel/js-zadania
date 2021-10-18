@@ -62,6 +62,17 @@ for (let i = 0; i < valueArray5.length; i++) {
 }
 console.log("Najdłuższy napis to: " + valueArray5[longestindex]);
 
+// 6) Choose all the indexes on the highest value from the given array. [1,6,23,8,4,98,3,7,3,98,4,98].
+let valueArray6 = [1,6,23,8,4,98,3,7,3,98,4,98];
+let highval6 = valueArray6[0];
+//szukanie największej wartości
+for (let i = 1; i < valueArray6.length; i++) {
+    if(valueArray6[i] > highval6) highval6 = valueArray6[i];
+}
+//wydruk indexów zawierających największą wartość
+for (let i = 1; i < valueArray6.length; i++) {
+    if(valueArray6[i] == highval6) console.log(i);
+}
 
 
 
