@@ -74,13 +74,6 @@ for (let i = 1; i < valueArray6.length; i++) {
     if(valueArray6[i] == highval6) console.log(i);
 }
 
-
-
-
-
-
-
-
 // 7) Calculate average value from the given array for even numbers [1,6,23,8,4,98,3,7,3,98,4,98]
 let valueArray7 = [1,6,23,8,4,98,3,7,3,98,4,98];
 let sum7 = 0;
@@ -104,3 +97,12 @@ for (let i = 1; i < valueArray8.length; i++) {
 }
 avg8 = sum8 / amount;
 console.log("Średnia liczb parzystych indexów to: " + avg8);
+
+// 9) With a given start value of 0. Iterate the array and add even items and subtract odd ones. [1,6,23,8,4,98,3,7,3,98,4,98]
+let valueArray9 = [1,6,23,8,4,98,3,7,3,98,4,98];
+let sum9 = 0;
+for (let i = 0; i < valueArray9.length-1; i = i + 2) {
+        sum9 += valueArray9[i];
+        sum9 -= valueArray9[i+1];
+}
+console.log("Suma parzystych po odjęciu nieparzystych to: " + sum9);
