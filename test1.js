@@ -107,9 +107,15 @@ console.log("8) Średnia liczb parzystych indexów to: " + avg8);
 // 9) With a given start value of 0. Iterate the array and add even items and subtract odd ones. [1,6,23,8,4,98,3,7,3,98,4,98]
 let valueArray9 = [1,6,23,8,4,98,3,7,3,98,4,98];
 let sum9 = 0;
-for (let i = 0; i < valueArray9.length-1; i = i + 2) {
-        sum9 -= valueArray9[i];
-        sum9 += valueArray9[i+1];     
+for (let i = 0; i < valueArray9.length; i++) {
+    // if(valueArray9[i] % 2 == 0) {
+    //     sum9 += valueArray9[i];     
+    // }
+    // else {
+    //     sum9 -= valueArray9[i];
+    // }
+
+    (valueArray9[i] % 2 == 0) ? sum9 += valueArray9[i] : sum9 -= valueArray9[i];   //wersja skrócona
 }
 console.log("9) Suma parzystych po odjęciu nieparzystych to: " + sum9);
 
@@ -128,7 +134,7 @@ console.log("9) Suma parzystych po odjęciu nieparzystych to: " + sum9);
 //    11
 // 7) Średnia parzystych to: 45.142857142857146
 // 8) Średnia liczb parzystych indexów to: 7.4
-// 9) Suma parzystych po odjęciu nieparzystych to: 277
+// 9) Suma parzystych po odjęciu nieparzystych to: 279
 
 
 
