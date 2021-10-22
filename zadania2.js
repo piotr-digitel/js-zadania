@@ -67,3 +67,21 @@ RevOfArray(array);
 
 
 
+//     5) Create a function that based on given array returns new array in pattern [a,b,c,d,e,f] -> [a+b, c+d, e+f]    [1,3,4,1,0,3] => [4,5,3] function(array)=>array
+function NewArray(tablica){
+  //  let AR = [tablica[0] + tablica[1], tablica[2] + tablica[3], tablica[4] + tablica[5]];
+  //  return AR;
+  return [tablica[0] + tablica[1], tablica[2] + tablica[3], tablica[4] + tablica[5]];
+}
+
+array = [1,3,4,1,0,3];
+
+//let newAR = NewArray(array);
+//console.log("5) New aray : " + newAR);
+
+console.log("5) New aray : " + NewArray(array));
+
+
+
+//     6) For time of this example remove last element from the given array. Create a function that based on given array return new array in pattern [a,b,c,d,e] -> [a+b, c+d, e+e]
+
