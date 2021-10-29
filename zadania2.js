@@ -19,23 +19,20 @@ let array= [1,6,23,8,4,8,3,7];
 //     1) Create a function that returns the sum of all elements passed in array as parameter. Function (array)=>number
 function sumOfArray(tablica){
     let sum = 0;
-    for (let i = 0; i < tablica.length; i++) {
-        sum += tablica[i];
-    }
-    console.log("1) Sum of aray is: " + sum);
+    for (let i = 0; i < tablica.length; i++) sum += tablica[i];
+    return sum;
 }
 
-sumOfArray(array);
+console.log("1) Sum of aray is: " + sumOfArray(array));
 
 
 
 //     2) Create a function that returns sum of first and last elements of given array.
 function sumFitstLast(tablica){
-    let sum = tablica[0] + tablica[tablica.length-1];
-    console.log("2) Sum of first and last elements of given aray is: " + sum);
+    return tablica[0] + tablica[tablica.length-1];
 }
 
-sumFitstLast(array);
+console.log("2) Sum of first and last elements of given aray is: " + sumFitstLast(array));
 
 
 
@@ -47,31 +44,29 @@ function calcFactorial(n){
     while( n > 0 ){
         summary *= n--;
     }
-    console.log("3) Factorial of " + liczbaDoSilni + " is: " + summary);
+    return summary;
 }
-
-calcFactorial(liczbaDoSilni);
-
+console.log("3) Factorial of " + liczbaDoSilni + " is: " + calcFactorial(liczbaDoSilni));
 
 
 //     4) Create a function that returns given array in reverse order. // no build in functions  
-function RevOfArray(tablica){
-    console.log("4) Reverse order of aray : ");
-    for (let i = 1; i <= tablica.length; i++) {
-        console.log(tablica[tablica.length-i]);
+function RevOfArray(array1){
+    let tmp;                                        //temporary variable to remember first values of array
+    for (let i = 0; i < array1.length/2; i++) {     //we only sweep half the array
+        tmp = array1[i];                            //remember the starting element of the array
+        array1[i]=array1[array1.length-i-1];        //in the initial element we write the final one
+        array1[array1.length-i-1]=tmp;              //in the final element we save the first remembered earlier
     }
 }
+RevOfArray(array);  //the function changes the values ​​in a given array because it is passed as a reference (array is a reference type)
 
-RevOfArray(array);
-
+console.log("4) Reverse order of aray : " + array);
 
 
 
 //     5) Create a function that based on given array returns new array in pattern [a,b,c,d,e,f] -> [a+b, c+d, e+f]    [1,3,4,1,0,3] => [4,5,3] function(array)=>array
-function NewArray(tablica){
-  //  let AR = [tablica[0] + tablica[1], tablica[2] + tablica[3], tablica[4] + tablica[5]];
-  //  return AR;
-  return [tablica[0] + tablica[1], tablica[2] + tablica[3], tablica[4] + tablica[5]];
+function NewArray(arrayIn){
+  return [arrayIn[0] + arrayIn[1], arrayIn[2] + arrayIn[3], arrayIn[4] + arrayIn[5]];
 }
 
 array = [1,3,4,1,0,3];
