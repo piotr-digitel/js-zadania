@@ -66,17 +66,46 @@ console.log("4) Reverse order of aray : " + array);
 
 //     5) Create a function that based on given array returns new array in pattern [a,b,c,d,e,f] -> [a+b, c+d, e+f]    [1,3,4,1,0,3] => [4,5,3] function(array)=>array
 function NewArray(arrayIn){
-  return [arrayIn[0] + arrayIn[1], arrayIn[2] + arrayIn[3], arrayIn[4] + arrayIn[5]];
+    let arrayTmp = [];                                        //temporary variable to remember output array
+    let j = 0;                                                //indexes of output array
+    for (let i = 0; i < arrayIn.length; i=i+2) {              //we jump every second index
+        arrayTmp[j] = arrayIn[i]+arrayIn[i+1];                //counting elements of the output array
+        j++;
+    }
+  return arrayTmp;
 }
 
 array = [1,3,4,1,0,3];
-
-//let newAR = NewArray(array);
-//console.log("5) New aray : " + newAR);
-
-console.log("5) New aray : " + NewArray(array));
+console.log("5) New array : " + NewArray(array));
 
 
 
 //     6) For time of this example remove last element from the given array. Create a function that based on given array return new array in pattern [a,b,c,d,e] -> [a+b, c+d, e+e]
+function NewArray2(arrayIn){
+    let arrayTmp = [];                                        //temporary variable to remember output array
+    let j = 0;                                                //indexes of output array
+    let x = 0;
+    if(arrayIn.length % 2) x = 1;                                          
+    for (let i = 0; i < arrayIn.length-x; i=i+2) {            //we jump every second index
+        arrayTmp[j] = arrayIn[i]+arrayIn[i+1];                //counting elements of the output array
+        j++;
+    }
+    if(arrayIn.length % 2) arrayTmp[j] = 2 * arrayIn[arrayIn.length-1];
+  return arrayTmp;
+}
 
+array = [1,3,4,1,0];
+console.log("6) New array2 : " + NewArray2(array));
+
+
+//     7) Create a function the return one random element from given array. // use random function 
+function RndArray(arrayIn){
+    max = Math.floor(arrayIn.length-1);
+    return arrayIn[Math.floor(Math.random() * (max + 1))];
+}
+
+array = [1,3,4,1,0,3];
+console.log("7) Random element of array : " + RndArray(array));
+
+
+//     8) Create a function that takes two parameters: array and number off attempts. Based on number of attempts choose a random number from table that many times and return lowest one.
