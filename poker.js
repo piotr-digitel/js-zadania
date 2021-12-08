@@ -1,11 +1,20 @@
-const cardSymbols = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]; // 0,1,2,3,4   ,12
-const suitSymbols = ["♠", "♣", "♥", "♦"];  // 0, 13, 26, 39
+//2. poker solver
+
+const A=1, K=13, Q=12, J=11, x = { "♠":0, "♣":1, "♥":2, "♦":3 };
 
 
+const handValue = [J, J, Q, K, 9];
+const handSuite = [ x["♠"], x["♠"], x["♠"], x["♠"], x["♠"] ];
 
-const hand = ["9","9","9","9","11"];   // symbol+suit: for example: "2"+"♣" = 14 (1+ 13)
 let valuesArray = [];
 let colorArray = [];
+
+function convertHand(){
+     for(let i = 0; i < 5; i ++){
+          valuesArray[i] = handValue[i]-1;  // cardSymbols = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]; // 0,1,2,3,4, ....  ,12
+          colorArray[i] = handSuite[i];     
+     }
+}
 
 function checkHand(){
      let resultString = "";
@@ -52,32 +61,33 @@ function checkHand(){
      console.log('You have: ' + resultString);
 }  
 
-function convertHand(){
-     for(let i = 0; i < 5; i ++){
-          valuesArray[i] = hand[i] % 13;
-          colorArray[i] = Math.floor(hand[i] / 13);     
-     }
-     console.log(valuesArray);
-     console.log(colorArray);
+// function isFlush(){                              //five cards all of the same suit, not all of sequential rank
+//      function checkAreTheSame(idx) {
+//           return colorArray[idx] == colorArray[0];
+//         }
+//      return colorArray.every(checkAreTheSame);   //every runs function to check eqality every element with first - if all are then true
+// }
+
+//shorter version:
+
+function isFlush(){                              //five cards all of the same suit, not all of sequential rank
+     return colorArray.every(function(idx){      //every runs function to check eqality every element with first - if all are equal then true
+          return colorArray[idx] == colorArray[0];
+     },{});   
 }
 
-function isFlush(){                                                     //five cards all of the same suit, not all of sequential rank
-     let sum = colorArray.reduce(function (a, b) {return a + b;}, 0);   //sum of array element
-     if(sum == 0 || sum == 5 || sum == 10 || sum == 15) return true;
-     return false;
-}
 
-function isStraight(){                          //A straight is a hand that contains five cards of sequential rank
+function isStraight(){                           //A straight is a hand that contains five cards of sequential rank
      let isS = 0;
-     let lowest = Math.min(...valuesArray);     //finds lowest card in array 
-     for(let i = lowest; i < lowest + 5; i++){  //check if array includes five cards of sequential rank
+     let lowest = Math.min(...valuesArray);      //finds lowest card in array 
+     for(let i = lowest; i < lowest + 5; i++){   //check if array includes five cards of sequential rank
           if(valuesArray.includes(i)) isS++ ;
      }
      if(isS == 5 && lowest != 0) return true;
      return false;
 }
 
-function isAceStraight(){   //check if array includes A, 10, J, Q, K
+function isAceStraight(){                        //check if array includes A, 10, J, Q, K
      let isAS = 0;
      if (valuesArray.includes(0)) isAS = 1;
      for(let i = 9; i < 13; i++){
