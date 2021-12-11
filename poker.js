@@ -1,18 +1,27 @@
-const cardSymbols = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]; // 0,1,2,3,4   ,12
-const suitSymbols = ["♠", "♣", "♥", "♦"];  // 0, 13, 26, 39
+//2. poker solver
+
+const A=1, K=13, Q=12, J=11, x = { "♠":0, "♣":1, "♥":2, "♦":3 };
 
 
+const handValue = [J, J, Q, K, 9];
+const handSuite = [ x["♠"], x["♠"], x["♠"], x["♠"], x["♠"] ];
 
-const hand = ["0","1","40","13","12"];   // symbol+suit: for example: "2"+"♣" = 14 (1+ 13)
 let valuesArray = [];
-let suitsArray = [];
+let colorArray = [];
+
+function convertHand(){
+     for(let i = 0; i < 5; i ++){
+          valuesArray[i] = handValue[i]-1;  // cardSymbols = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]; // 0,1,2,3,4, ....  ,12
+          colorArray[i] = handSuite[i];     
+     }
+}
 
 function checkHand(){
      let resultString = "";
 
      convertHand();
-    //console.log(duplicateCards())
-     switch(duplicateCards()){
+
+     switch(areDuplicateCards()){
           case "2":
                resultString = "1 Pair";
                break;
@@ -28,9 +37,6 @@ function checkHand(){
                break;
           case "4":
                resultString = "4 of a Kind";
-               break;
-          case "5":
-               resultString = "5 of a Kind";
                break;
           default:
                if(isStraight()){
@@ -55,77 +61,55 @@ function checkHand(){
      console.log('You have: ' + resultString);
 }  
 
-function convertHand(){
-     for(let i = 0; i < 5; i ++){
-          valuesArray[i] = hand[i] % 13;
-          suitsArray[i] = Math.floor(hand[i] / 13);     
-     }
+// function isFlush(){                              //five cards all of the same suit, not all of sequential rank
+//      function checkAreTheSame(idx) {
+//           return colorArray[idx] == colorArray[0];
+//         }
+//      return colorArray.every(checkAreTheSame);   //every runs function to check eqality every element with first - if all are then true
+// }
+
+//shorter version:
+
+function isFlush(){                              //five cards all of the same suit, not all of sequential rank
+     return colorArray.every(function(idx){      //every runs function to check eqality every element with first - if all are equal then true
+          return colorArray[idx] == colorArray[0];
+     },{});   
 }
 
-function isFlush(){
-     for(let i = 0; i < 4; i ++){
-          if(suitsArray[i] != suitsArray[i+1]){
-               return false;
-          }
+
+function isStraight(){                           //A straight is a hand that contains five cards of sequential rank
+     let isS = 0;
+     let lowest = Math.min(...valuesArray);      //finds lowest card in array 
+     for(let i = lowest; i < lowest + 5; i++){   //check if array includes five cards of sequential rank
+          if(valuesArray.includes(i)) isS++ ;
      }
-     return true;
+     if(isS == 5 && lowest != 0) return true;
+     return false;
 }
 
-function isStraight(){
-     let lowest = getLowest();
-     for(let i = 1; i < 5; i++){
-          if(occurrencesOf(lowest + i) != 1){
-               return false
-          }     
+function isAceStraight(){                        //check if array includes A, 10, J, Q, K
+     let isAS = 0;
+     if (valuesArray.includes(0)) isAS = 1;
+     for(let i = 9; i < 13; i++){
+       if (valuesArray.includes(i)) isAS++ ;   
      }
-     return true;
+     if(isAS == 5) return true;
+     return false;
 }
 
-function isAceStraight(){
-     let lowest = 9;
-     for(let i = 1; i < 4; i++){
-          if(occurrencesOf(lowest + i) != 1){
-               return false
-          }     
+function areDuplicateCards(){
+     let countsOfDuplicates = '';
+     let duplicatesMap = {};
+     duplicatesMap = valuesArray.reduce(function(prev, cur) {
+          prev[cur] = (prev[cur] || 0) + 1;
+          return prev;
+     }, {});
+
+     for(let i = 0; i < Object.keys(duplicatesMap).length; i++){
+          if (Object.values(duplicatesMap)[i] > 1) countsOfDuplicates+= Object.values(duplicatesMap)[i];
      }
-     return occurrencesOf(1) == 0;
+     return countsOfDuplicates;
 }
-
-function getLowest(){
-     let min = 12;
-     for(let i = 0; i < valuesArray.length; i++){
-          min = Math.min(min, valuesArray[i]);     
-     }
-     return min;     
-} 
-
-function duplicateCards(){
-     let occurrencesFound = []; 
-     let result = "";
-     for(let i = 0; i < valuesArray.length; i++){
-          let occurrences = occurrencesOf(valuesArray[i]);
-          if(occurrences > 1 && occurrencesFound.indexOf(valuesArray[i]) == -1){
-               result += occurrences; 
-               occurrencesFound.push(valuesArray[i]);    
-          }
-     }
-     return result;
-}
-
-function occurrencesOf(n){
-     let count = 0;
-     let index = 0;   
-     do{          
-          index = valuesArray.indexOf(n, index) + 1;  
-          if(index == 0){
-               break;
-          }
-          else{
-               count ++;
-          }
-     } while(index < valuesArray.length);
-     return count;
-}  
 
      checkHand();
       
