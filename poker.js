@@ -12,7 +12,8 @@ let colorArray = [];
 function convertHand(){
      for(let i = 0; i < 5; i ++){
           valuesArray[i] = handValue[i]-1;  // cardSymbols = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]; // 0,1,2,3,4, ....  ,12
-          colorArray[i] = handSuite[i];     
+          colorArray[i] = handSuite[i]; 
+    
      }
 }
 
