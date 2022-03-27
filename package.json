@@ -1,0 +1,23 @@
+{
+  "name": "test1",
+  "version": "1.0.0",
+  "description": "Rozwiązanie zadań z kursu Java Script",
+  "main": "test1.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/piotr-digitel/js-zadania.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/piotr-digitel/js-zadania/issues"
+  },
+  "homepage": "https://github.com/piotr-digitel/js-zadania#readme",
+  "dependencies": {
+    "yargs": "^17.2.1"
+  }
+}
